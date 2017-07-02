@@ -47,7 +47,7 @@ for gen = 1:options.generations
             mb_labels = CNN.labels(rp(s:s+minibatch-1));
 
             % evaluate the objective function on the next minibatch
-            [cost, grad, CNN] = funObj(mb_data,mb_labels,theta,CNN);
+            [cost, grad, CNN] = cnnCost(mb_data,mb_labels,theta,CNN,0);
 
             % Instructions: Add in the weighted velocity vector to the
             % gradient evaluated above scaled by the learning rate.
@@ -80,5 +80,7 @@ for gen=1:options.generations
         fprintf('Gen %d, Epoch %d - Accuracy: %f\n',gen,e,results((gen-1)*epochs + e));
     end
 end
+
+efficiency = 1 ./ efficiency;
 
 end
