@@ -2,16 +2,19 @@ function [ CNN ] = buildCNN( numLayers, minibatch, dataset, activation, gpumode 
 %buildCNN initializes CNN
 %   Loads images and labels, initializes parameters refering them, and
 %   initializes layers array so that layers can later be added.
+
+    addpath '../cifar-10-batches-mat/';
+    addpath '../common/';
     
     CNN.gpumode = gpumode;
     CNN.numLayers = numLayers;
     
     if strcmp(dataset, 'mnist')==1
-        CNN.images = loadMNISTImages('../common/train-images-idx3-ubyte');
-        CNN.labels = loadMNISTLabels('../common/train-labels-idx1-ubyte');
+        CNN.images = loadMNISTImages('common/train-images-idx3-ubyte');
+        CNN.labels = loadMNISTLabels('common/train-labels-idx1-ubyte');
         
-        CNN.testImages = loadMNISTImages('../common/t10k-images-idx3-ubyte');
-        CNN.testLabels = loadMNISTLabels('../common/t10k-labels-idx1-ubyte');
+        CNN.testImages = loadMNISTImages('common/t10k-images-idx3-ubyte');
+        CNN.testLabels = loadMNISTLabels('common/t10k-labels-idx1-ubyte');
     elseif strcmp(dataset, 'cifar')==1
         [CNN.images, CNN.labels, CNN.testImages, CNN.testLabels] = ...
             loadCIFARImages();

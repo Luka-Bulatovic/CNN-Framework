@@ -9,6 +9,6 @@ function [ CNN ] = cnnRollActiveVector( CNN, vect )
                 CNN.layers(layerNum).W_active = reshape(vect(tempPos:tempPos + ...
                     t-1), size(CNN.layers(layerNum).W_active));
                 tempPos = tempPos + t;
-        end;
-    end;
+        end
+    end
 end

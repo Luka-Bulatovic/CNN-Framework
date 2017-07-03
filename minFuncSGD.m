@@ -1,8 +1,10 @@
-function [opttheta, CNN, efficiency] = minFuncSGD(funObj,theta,options,CNN)
+function [opttheta, CNN, efficiency] = minFuncSGD(theta,options,CNN)
 %% Setup
 
 assert(all(isfield(options,{'epochs','alpha','minibatch'})),...
         'Some options not defined');
+assert(options.noOfMinibatches <= int32(floor(length(CNN.labels)/options.minibatch)), ...
+    ['The number of minibatches is greater than the maximum number of minibatches: ' num2str(int32(floor(length(CNN.labels)/options.minibatch)))]);
 if ~isfield(options,'momentum')
     options.momentum = 0.9;
 end

@@ -33,3 +33,5 @@ end
 
 acc = acc / (its2*CNN.minibatchSize);
 fprintf('Accuracy is %f\n',acc);
+pie(does_something);
+legend('show');
